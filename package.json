@@ -6,7 +6,15 @@
   "scripts": {
     "dev": "pnpm --filter @openorder/frontend dev",
     "build": "pnpm --filter @openorder/frontend build",
+    "lint": "pnpm --filter @openorder/frontend lint",
     "preview": "pnpm --filter @openorder/frontend preview",
-    "test": "pnpm --filter @openorder/frontend test"
+    "test": "pnpm --filter @openorder/frontend test",
+    "format": "pnpm --filter @openorder/frontend format",
+    "format:check": "pnpm --filter @openorder/frontend format:check"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.3.4",
+    "@capacitor/cli": "^8.3.4",
+    "@capacitor/core": "^8.3.4"
   }
 }

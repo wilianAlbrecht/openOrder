@@ -335,6 +335,352 @@ TODO: feature futura, não prioritária neste momento.
 
 ---
 
+# Fases do Projeto
+
+## Fase 1 — Fundação do Projeto
+
+Objetivo:
+inicializar a base técnica do frontend standalone.
+
+Tarefas:
+- configurar React
+- configurar TypeScript
+- configurar Vite
+- configurar ESLint
+- configurar Prettier
+- configurar aliases
+- configurar estrutura de pastas
+- preparar PWA
+
+Resultado esperado:
+base pronta para desenvolvimento do MVP.
+
+---
+
+## Fase 2 — Base Mobile
+
+Objetivo:
+habilitar execução web e Android com Capacitor.
+
+Tarefas:
+- configurar Capacitor
+- validar build web
+- preparar build Android
+- validar execução mobile
+- preparar ícone e splash futuramente
+
+Resultado esperado:
+aplicação pronta para rodar no navegador e evoluir para Android.
+
+---
+
+## Fase 3 — Arquitetura e Domínio
+
+Objetivo:
+padronizar a arquitetura do frontend.
+
+Tarefas:
+- definir organização de pastas
+- definir padrão de componentes
+- definir serviços
+- definir models
+- definir storage local
+- definir entidades principais
+
+Entidades principais:
+- Product
+- Order
+- OrderItem
+- QueueItem
+- Settings
+
+Resultado esperado:
+estrutura consistente, desacoplada e fácil de manter.
+
+---
+
+## Fase 4 — Persistência Local
+
+Objetivo:
+garantir persistência offline confiável.
+
+Tarefas:
+- criar abstração de storage
+- implementar IndexedDB
+- criar helpers de persistência
+- criar versionamento básico de schema
+- criar persistência automática
+- restaurar dados ao reiniciar o app
+
+Dados persistidos:
+- produtos
+- comandas
+- pedidos
+- configurações
+- status dos pedidos
+
+Resultado esperado:
+dados sobrevivem reload, reinício e uso offline.
+
+---
+
+## Fase 5 — Segurança e Privacidade
+
+Objetivo:
+garantir que o MVP nasça orientado por segurança e privacidade.
+
+Tarefas:
+- validar entradas do usuário
+- minimizar dados persistidos
+- evitar exposição de dados sensíveis em logs
+- evitar compartilhamentos automáticos
+- isolar integrações futuras da operação local
+- revisar armazenamento local com foco em privacidade
+
+Resultado esperado:
+base funcional com proteção adequada para uso local e offline.
+
+---
+
+## Fase 6 — Layout Base
+
+Objetivo:
+criar a estrutura navegável principal.
+
+Tarefas:
+- criar sidebar ou menu principal
+- criar header
+- criar navegação mobile
+- criar tabs quando necessário
+- criar layout responsivo
+
+Telas do MVP:
+- Comandas
+- Fila
+- Cardápio
+- Configurações
+
+Tela futura:
+- Dashboard
+
+Resultado esperado:
+navegação completa e operacional para o MVP.
+
+---
+
+## Fase 7 — Design System Simples
+
+Objetivo:
+padronizar a interface operacional.
+
+Tarefas:
+- botões
+- inputs
+- cards
+- modais
+- tabelas
+- badges de status
+- estados de loading
+- toasts
+
+Resultado esperado:
+UI consistente, rápida e touch-friendly.
+
+---
+
+## Fase 8 — Cadastro de Cardápio
+
+Objetivo:
+gerenciar produtos localmente.
+
+Tarefas:
+- listar produtos
+- criar produto
+- editar produto
+- remover produto
+- organizar categorias
+- controlar disponibilidade
+- permitir imagem local opcional
+
+Campos:
+- nome
+- preço
+- categoria
+- descrição opcional
+- disponível
+
+Resultado esperado:
+cardápio funcional sem backend.
+
+---
+
+## Fase 9 — Sistema de Comandas
+
+Objetivo:
+controlar o fluxo principal da operação.
+
+Tarefas:
+- criar comanda
+- listar comandas
+- editar comanda
+- definir status
+- registrar data e hora
+- gerar número automático
+- adicionar produtos
+- alterar quantidade
+- remover item
+- adicionar observações
+- calcular total automaticamente
+- salvar automaticamente
+
+Resultado esperado:
+comandas funcionando com persistência local.
+
+---
+
+## Fase 10 — Fila de Pedidos
+
+Objetivo:
+controlar pedidos ativos e fluxo de preparo.
+
+Tarefas:
+- listar pedidos ativos
+- ordenar por horário
+- exibir status visual
+- marcar como preparando
+- marcar como pronto
+- marcar como entregue
+- atualizar UI instantaneamente
+
+Resultado esperado:
+fila operacional e integrada ao fluxo de comandas.
+
+---
+
+## Fase 11 — Configurações
+
+Objetivo:
+preparar customização básica e expansão futura.
+
+Tarefas:
+- nome do estabelecimento
+- logo
+- moeda
+- preferências locais
+- preparar impressão futura
+- preparar servidor local futuro
+- preparar WhatsApp futuro
+
+Resultado esperado:
+base configurável sem dependências externas.
+
+---
+
+## Fase 12 — Ajustes Mobile
+
+Objetivo:
+garantir conforto de uso em operação real.
+
+Tarefas:
+- testar touch
+- ajustar responsividade
+- ajustar teclado virtual
+- avaliar fullscreen
+- revisar performance no Android
+
+Resultado esperado:
+uso confortável em celular e tablet.
+
+---
+
+## Fase 13 — Polimento do MVP
+
+Objetivo:
+deixar a experiência operacional estável.
+
+Tarefas:
+- loading states
+- feedback visual
+- animações leves
+- atalhos rápidos
+- confirmação de ações
+- testes operacionais
+
+Validar:
+- abertura de comanda
+- lançamento de pedido
+- atualização de fila
+- persistência
+- funcionamento offline
+
+Resultado esperado:
+MVP estável para uso inicial.
+
+---
+
+## Fase 14 — Build Inicial
+
+Objetivo:
+gerar a primeira versão utilizável.
+
+Tarefas:
+- build web
+- build PWA
+- build Android
+- APK de debug
+
+Resultado esperado:
+primeira versão utilizável em navegador e Android.
+
+---
+
+## Fase 15 — TODO Futuro
+
+Itens que podem ser preparados na arquitetura, mas não são prioridade agora:
+- dashboard simples
+- integração básica com WhatsApp
+- arquitetura de impressão
+- sincronização local
+- múltiplos usuários
+- websocket
+- cloud opcional
+
+Resultado esperado:
+expansão futura sem reescrever o frontend.
+
+---
+
+# Prioridade do MVP
+
+A prioridade do MVP é validar:
+
+1. fluxo operacional
+2. UX
+3. velocidade
+4. offline-first
+5. simplicidade
+6. segurança e privacidade
+
+---
+
+# Resultado Esperado do MVP
+
+Ao final do MVP o sistema deve:
+
+- funcionar offline
+- criar comandas
+- controlar pedidos
+- possuir fila operacional
+- possuir cardápio funcional
+- possuir persistência local
+- funcionar no Android
+- funcionar no navegador
+- respeitar privacidade e segurança por padrão
+
+Sem qualquer backend.
+
+---
+
 # Regras Importantes
 
 ## O frontend NÃO pode:

@@ -13,9 +13,18 @@ node_modules/
 # Build
 dist/
 dist-ssr/
+android/.gradle/
+android/build/
+apps/frontend/android/.gradle/
+apps/frontend/android/build/
+apps/frontend/android/app/build/
+*.apk
 
 # Local env
 *.local
+package-lock.json
+android/local.properties
+apps/frontend/android/local.properties
 
 # Editors
 .vscode/*
