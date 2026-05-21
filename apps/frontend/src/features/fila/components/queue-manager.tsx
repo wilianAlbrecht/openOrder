@@ -147,7 +147,11 @@ export function QueueManager({
                 <article key={order.id} className="queue-card">
                   <header className="queue-card-header">
                     <div className="queue-card-title">
-                      <p className="list-label">Comanda #{order.number}</p>
+                      <p className="list-label">
+                        {order.reference
+                          ? `Comanda #${order.number} · ${order.reference}`
+                          : `Comanda #${order.number}`}
+                      </p>
                       <div className="queue-card-meta">
                         <StatusBadge status={order.status} />
                         <span className="queue-meta-text">

@@ -31,6 +31,7 @@ export function ComandasManager({
 }: ComandasManagerProps) {
   const [editingOrderId, setEditingOrderId] = useState<string | null>(null)
   const [selectedProductId, setSelectedProductId] = useState<string>(products[0]?.id ?? '')
+  const [reference, setReference] = useState('')
   const [draftItems, setDraftItems] = useState<DraftItem[]>([])
   const [notes, setNotes] = useState('')
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
@@ -64,11 +65,13 @@ export function ComandasManager({
       const order = editingOrderId
         ? updateOrder({
             order: orders.find((item) => item.id === editingOrderId)!,
+            reference,
             items: draftItems,
             notes
           })
         : createOrder({
             number: nextOrderNumber,
+            reference,
             items: draftItems,
             notes
           })
@@ -133,14 +136,16 @@ export function ComandasManager({
 
   function startEditing(order: Order) {
     setEditingOrderId(order.id)
+    setReference(order.reference ?? '')
     setDraftItems(order.items)
     setNotes(order.notes ?? '')
     setErrorMessage(null)
     setSuccessMessage(null)
   }
 
-function resetDraft() {
+  function resetDraft() {
     setEditingOrderId(null)
+    setReference('')
     setDraftItems([])
     setNotes('')
     setErrorMessage(null)
@@ -227,6 +232,15 @@ function resetDraft() {
         }
       >
         <form className="product-form" onSubmit={handleSubmit}>
+          <label className="field field-full">
+            <span>Referencia da comanda</span>
+            <input
+              placeholder="Ex.: Mesa 4 ou Maria"
+              type="text"
+              value={reference}
+              onChange={(event) => setReference(event.target.value)}
+            />
+          </label>
           <label className="field field-full">
             <span>Adicionar produto</span>
             <div className="composed-row">
@@ -321,7 +335,11 @@ function resetDraft() {
             activeOrders.map((order) => (
               <ListCard
                 key={order.id}
-                label={`Comanda #${order.number}`}
+                label={
+                  order.reference
+                    ? `Comanda #${order.number} · ${order.reference}`
+                    : `Comanda #${order.number}`
+                }
                 value={`${order.items.length} item(ns) · R$ ${(order.totalInCents / 100).toFixed(2)}`}
                 aside={
                   <div className="inline-actions">

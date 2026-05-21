@@ -3,6 +3,7 @@ import { createEntityId } from '@/shared/lib/id'
 import { nowIsoString } from '@/shared/lib/time'
 import {
   safeOptionalSensitiveTextField,
+  safeOptionalTextField,
   safeTextField
 } from '@/shared/security/schema'
 
@@ -26,6 +27,7 @@ export const orderItemSchema = z.object({
 export const orderSchema = z.object({
   id: z.string().min(1),
   number: z.int().positive(),
+  reference: safeOptionalTextField(120),
   status: orderStatusSchema,
   items: z.array(orderItemSchema),
   totalInCents: z.int().nonnegative(),
@@ -40,6 +42,7 @@ export type Order = z.infer<typeof orderSchema>
 
 export type CreateOrderInput = {
   number: number
+  reference?: string
   items?: OrderItem[]
   notes?: string
 }
@@ -58,6 +61,7 @@ export function createOrder(input: CreateOrderInput): Order {
   return orderSchema.parse({
     id: createEntityId('order'),
     number: input.number,
+    reference: input.reference,
     status: 'aberta',
     items,
     totalInCents: calculateOrderTotal(items),
@@ -69,6 +73,7 @@ export function createOrder(input: CreateOrderInput): Order {
 
 export type UpdateOrderInput = {
   order: Order
+  reference?: string
   items?: OrderItem[]
   notes?: string
   status?: OrderStatus
@@ -121,6 +126,7 @@ export function updateOrder(input: UpdateOrderInput): Order {
 
   return orderSchema.parse({
     ...input.order,
+    reference: input.reference === undefined ? input.order.reference : input.reference,
     items,
     status: nextStatus,
     notes: input.notes === undefined ? input.order.notes : input.notes,
